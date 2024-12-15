@@ -1,0 +1,26 @@
+/* Effets 3D */
+.card-3d {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.card-3d:hover {
+    transform: rotateY(10deg) scale(1.02);
+    transition: transform 0.3s ease;
+}
+
+/* Effets de survol */
+.hover-effect {
+    transition: all 0.3s ease;
+}
+
+.hover-effect:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Effets de particules */
+.particles-bg {
+    position: relative;
+    overflow: hidden;
+}

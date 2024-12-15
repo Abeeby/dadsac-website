@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos - DADSAC</title>
+    <!-- CSS commun -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- CSS spécifique à la page -->
+    <style>
+        .hero-about {
+            margin-top: 80px; /* Pour le header fixe */
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('../images/dandora.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .location-section {
+            background-color: var(--light-bg);
+            padding: 4rem 2rem;
+        }
+
+        .location-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .link-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .link-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .link-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .link-card a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Le header sera injecté ici automatiquement -->
+
+    <main>
+        <section class="hero-about">
+            <div>
+                <h1>À propos de nous</h1>
+                <p>Découvrez l'histoire de DADSAC, notre équipe et nos ambassadeurs</p>
+            </div>
+        </section>
+
+        <section class="content-grid">
+            <div class="left-column">
+                <div class="link-card">
+                    <h3>Notre Organisation</h3>
+                    <p>Découvrez comment DADSAC travaille pour améliorer la vie des jeunes à Dandora</p>
+                    <a href="#organisation">En savoir plus →</a>
+                </div>
+                <div class="link-card">
+                    <h3>Où nous travaillons</h3>
+                    <p>En savoir plus sur Dandora et ses défis</p>
+                    <a href="#location">En savoir plus →</a>
+                </div>
+            </div>
+
+            <div class="right-column">
+                <div class="link-card">
+                    <h3>Nous contacter</h3>
+                    <p>Prenez contact avec notre équipe</p>
+                    <a href="#contact">Contactez-nous →</a>
+                </div>
+                <div class="link-card">
+                    <h3>Devenir Ambassadeur</h3>
+                    <p>Rejoignez-nous dans notre mission</p>
+                    <a href="#ambassador">En savoir plus →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="location-section" id="location">
+            <div class="location-content">
+                <h2>Dandora - Notre zone d'action</h2>
+                <p>Dandora est un quartier situé à Nairobi, la capitale du Kenya. Il est réputé pour être l'un des plus grands bidonvilles de la ville, avec une population dense et des conditions de vie précaires. Dandora est composé de plusieurs phases, et la phase 4 est l'une d'entre elles.</p>
+                <br>
+                <p>La phase 4 de Dandora est connue pour être l'une des zones les plus peuplées et les plus défavorisées du quartier. Elle fait face à de nombreux défis socio-économiques tels que le chômage élevé, la pauvreté, l'accès limité à des services de base tels que l'eau potable, l'assainissement et les soins de santé.</p>
+                <br>
+                <p>Cependant, malgré ces difficultés, le quartier de Dandora, y compris sa phase 4, est également connu pour la résilience et la solidarité de sa communauté. Les habitants se soutiennent mutuellement et s'engagent dans diverses initiatives communautaires pour améliorer leurs conditions de vie.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Le footer sera injecté ici automatiquement -->
+
+    <!-- JavaScript commun -->
+    <script src="/js/common.js"></script>
+</body>
+</html>

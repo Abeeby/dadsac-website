@@ -1,0 +1,74 @@
+{
+  "tests": [
+    {
+      "name": "Connexion",
+      "duration": 3.7716,
+      "memoryDelta": 0.0959930419921875,
+      "status": "success"
+    },
+    {
+      "name": "Gestion memoire",
+      "duration": 16.6567,
+      "memoryDelta": -16.487838745117188,
+      "status": "success"
+    }
+  ],
+  "loadTests": [
+    {
+      "concurrency": 10,
+      "operations": 46440,
+      "duration": 5000,
+      "opsPerSecond": 9288,
+      "latency": {
+        "min": 3.1376,
+        "max": 4999.797,
+        "avg": 2636.693696444889,
+        "median": 2711.4853,
+        "p95": 4774.5114,
+        "p99": 4952.6422
+      }
+    },
+    {
+      "concurrency": 100,
+      "operations": 50200,
+      "duration": 5003,
+      "opsPerSecond": 10034,
+      "latency": {
+        "min": 3.1376,
+        "max": 10008.2764,
+        "avg": 5194.944851867795,
+        "median": 5193.6439,
+        "p95": 9562.0939,
+        "p99": 9918.7956
+      }
+    },
+    {
+      "concurrency": 1000,
+      "operations": 53000,
+      "duration": 5030,
+      "opsPerSecond": 10537,
+      "latency": {
+        "min": 3.1376,
+        "max": 15046.4188,
+        "avg": 7790.741172286923,
+        "median": 7933.3609,
+        "p95": 14337.7612,
+        "p99": 14912.9687
+      }
+    }
+  ],
+  "systemMetrics": {
+    "memory": {
+      "min": 9.755645751953125,
+      "max": 40.59367370605469,
+      "avg": 22.92019551595052
+    },
+    "cpu": {
+      "avg": 63.53333333333334,
+      "total": 953
+    },
+    "system": {
+      "avgLoad": 0
+    }
+  }
+}

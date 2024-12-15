@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre Équipe - DADSAC</title>
+    <!-- CSS commun -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .hero-team {
+            margin-top: 80px;
+            height: 50vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                        url('../images/team-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+            text-align: center;
+        }
+
+        .team-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .team-intro {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .member-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-image-container {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .member-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .member-card:hover .member-image {
+            transform: scale(1.1);
+        }
+
+        .member-social {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .member-card:hover .member-social {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .social-link {
+            color: white;
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: scale(1.2);
+        }
+
+        .member-info {
+            padding: 2rem;
+        }
+
+        .member-name {
+            font-size: 1.5em;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .member-role {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .member-bio {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .quote-section {
+            background-color: var(--light-bg);
+            padding: 6rem 2rem;
+            margin-top: 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .quote {
+            max-width: 800px;
+            margin: 0 auto;
+            font-style: italic;
+            color: var(--secondary-color);
+            position: relative;
+            padding: 2rem;
+        }
+
+        .quote::before,
+        .quote::after {
+            content: '"';
+            font-size: 4em;
+            color: var(--primary-color);
+            opacity: 0.2;
+            position: absolute;
+        }
+
+        .quote::before {
+            top: -20px;
+            left: -20px;
+        }
+
+        .quote::after {
+            bottom: -40px;
+            right: -20px;
+        }
+
+        .values-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .value-icon {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .team-members {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Le header sera injecté ici automatiquement -->
+
+    <main>
+        <section class="hero-team">
+            <div>
+                <h1>Notre Équipe</h1>
+                <p>Les personnes qui font vivre DADSAC au quotidien</p>
+            </div>
+        </section>
+
+        <section class="values-section">
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-heart value-icon"></i>
+                    <h3>Passion</h3>
+                    <p>Un engagement sincère pour le développement des jeunes</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-hands-helping value-icon"></i>
+                    <h3>Solidarité</h3>
+                    <p>Travailler ensemble pour un impact durable</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-lightbulb value-icon"></i>
+                    <h3>Innovation</h3>
+                    <p>Des solutions créatives pour des défis complexes</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="team-container">
+            <div class="team-intro">
+                <h2>Une équipe passionnée et engagée</h2>
+                <p>Découvrez les personnes qui œuvrent chaque jour pour améliorer la vie des jeunes de Dandora</p>
+            </div>
+
+            <div class="team-members">
+                <!-- Oskar -->
+                <article class="member-card">
+                    <div class="member-image-container">
+                        <img src="/images/oskar.jpg" alt="Oskar" class="member-image">
+                        <div class="member-social">
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Oskar</h3>
+                        <p class="member-role">
+                            <i class="fas fa-graduation-cap"></i>
+                            Fondateur & Étudiant en travail social
+                        </p>
+                        <div class="member-bio">
+                            <p>En tant qu'étudiant en travail social, j'ai voyagé au Kenya à Nairobi pour faire un stage avec des jeunes de rues. Dès mon arrivée à Nairobi, j'ai été frappé par la diversité culturelle et le mode de vie des gens.</p>
+                            <br>
+                            <p>Depuis 2021, avec l'association DADSAC que nous avons créée avec John, nous nous sommes concentrés sur l'amélioration des conditions des jeunes et enfants de Dandora.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- John -->
+                <article class="member-card">
+                    <div class="member-image-container">
+                        <img src="/images/john.jpg" alt="John" class="member-image">
+                        <div class="member-social">
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">John</h3>
+                        <p class="member-role">
+                            <i class="fas fa-fist-raised"></i>
+                            Coordinateur & Ancien boxeur professionnel
+                        </p>
+                        <div class="member-bio">
+                            <p>Ancien boxeur professionnel et entraîneur passionné, John est le pilier de DADSAC sur le terrain. Il utilise son expérience dans le sport pour guider et inspirer les jeunes de Dandora.</p>
+                            <br>
+                            <p>Sa connaissance approfondie de la communauté et son engagement envers les jeunes font de lui un mentor exceptionnel.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <section class="quote-section">
+            <div class="quote">
+                <p>"Voir ces jeunes grandir, se former, se passionner pour le sport et l'art, c'est ma plus grande récompense. Je crois en eux et en leur potentiel."</p>
+                <p style="margin-top: 1rem; font-weight: bold;">- John, Coordinateur DADSAC</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Le footer sera injecté ici automatiquement -->
+
+    <!-- JavaScript commun -->
+    <script src="/js/common.js"></script>
+</body>
+</html>

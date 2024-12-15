@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog - DADSAC</title>
+    <!-- CSS commun -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- CSS spécifique à la page -->
+    <style>
+        .blog-hero {
+            margin-top: 80px;
+            height: 40vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('../images/blog-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+            text-align: center;
+        }
+
+        .blog-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-post {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-date {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .blog-title {
+            margin: 0.5rem 0;
+            color: var(--secondary-color);
+        }
+
+        .blog-excerpt {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        .blog-categories {
+            margin: 2rem 0;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .category-tag {
+            padding: 0.5rem 1rem;
+            background: var(--light-bg);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .category-tag:hover,
+        .category-tag.active {
+            background: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Le header sera injecté ici automatiquement -->
+
+    <main>
+        <section class="blog-hero">
+            <div>
+                <h1>Notre Blog</h1>
+                <p>Suivez nos actualités et découvrez la vie à Dandora</p>
+            </div>
+        </section>
+
+        <div class="blog-container">
+            <div class="blog-categories">
+                <span class="category-tag active">Tous</span>
+                <span class="category-tag">Actualités</span>
+                <span class="category-tag">Événements</span>
+                <span class="category-tag">Témoignages</span>
+                <span class="category-tag">Projets</span>
+            </div>
+            
+            <div class="blog-grid">
+                <article class="blog-post">
+                    <img src="../images/football-tournament.jpg" alt="Tournoi de football" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-date">12 mars 2024</span>
+                        <h3 class="blog-title">Grand tournoi de football à Dandora</h3>
+                        <p class="blog-excerpt">Plus de 100 jeunes ont participé à notre tournoi mensuel, créant des moments inoubliables de partage et de compétition...</p>
+                        <a href="#" class="read-more">
+                            Lire la suite 
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Ajoutez d'autres articles de blog ici -->
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="btn">Page précédente</button>
+                <button class="btn">Page suivante</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Le footer sera injecté ici automatiquement -->
+
+    <!-- JavaScript commun -->
+    <script src="/js/common.js"></script>
+    
+    <!-- JavaScript spécifique au blog -->
+    <script>
+        // Gestion des filtres de catégories
+        document.querySelectorAll('.category-tag').forEach(tag => {
+            tag.addEventListener('click', () => {
+                document.querySelectorAll('.category-tag').forEach(t => 
+                    t.classList.remove('active'));
+                tag.classList.add('active');
+                // Ajoutez ici la logique de filtrage des articles
+            });
+        });
+    </script>
+</body>
+</html>

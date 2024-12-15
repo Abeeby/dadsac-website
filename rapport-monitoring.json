@@ -1,0 +1,42 @@
+{
+  "date": "2024-12-15T10:18:03.368Z",
+  "resultats": {
+    "reussis": 6,
+    "echoues": 0,
+    "total": 6
+  },
+  "monitoring": {
+    "duration": 5078,
+    "samples": 5,
+    "memory": {
+      "min": 10603864,
+      "max": 12735040,
+      "average": 11541897.6
+    },
+    "cpu": {
+      "total": 125000,
+      "perSecond": 25000
+    },
+    "system": {
+      "averageLoad": 0
+    }
+  },
+  "details": {
+    "durees": {
+      "Connexion BD": 4,
+      "Charge 10 utilisateurs": 5,
+      "Charge 100 utilisateurs": 15,
+      "Test stress 5 secondes": 5002,
+      "Test CPU": 5,
+      "Test Memoire": 7
+    },
+    "memoire": {
+      "Connexion BD": 0.0951690673828125,
+      "Charge 10 utilisateurs": -0.2620086669921875,
+      "Charge 100 utilisateurs": 1.443359375,
+      "Test stress 5 secondes": 0.2618865966796875,
+      "Test CPU": 1.4349899291992188,
+      "Test Memoire": 5.250190734863281
+    }
+  }
+}

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi des Donations - DADSAC</title>
+    <!-- CSS commun -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .donations-hero {
+            margin-top: 80px;
+            padding: 3rem 0;
+            background: var(--light-bg);
+        }
+
+        .donations-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .donation-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 2em;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .donation-history {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        .history-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter-button {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 20px;
+            background: transparent;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-button.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .history-table th,
+        .history-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .donation-status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+
+        .status-success {
+            background: #e3f9e5;
+            color: #1b4400;
+        }
+
+        .impact-visualization {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        .progress-container {
+            margin: 2rem 0;
+        }
+
+        .progress-bar {
+            height: 25px;
+            background: var(--light-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color), #ff6b6b);
+            width: 0;
+            transition: width 1.5s ease;
+            position: relative;
+        }
+
+        .progress-label {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        .donation-certificate {
+            text-align: center;
+            background: white;
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .certificate-icon {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .download-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .download-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        #donationChart {
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .history-filters {
+                overflow-x: auto;
+                padding-bottom: 1rem;
+            }
+
+            .history-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenu HTML amélioré -->
+    <header class="donations-hero">
+        <div class="donations-container">
+            <h1>Tableau de bord des donations</h1>
+            <p>Suivez l'impact de votre générosité</p>
+        </div>
+    </header>
+
+    <main class="donations-container">
+        <!-- Stats avec icônes -->
+        <div class="donation-stats">
+            <div class="stat-card">
+                <i class="fas fa-hand-holding-heart stat-icon"></i>
+                <h3>Total des dons</h3>
+                <div class="stat-number" data-count="1500">0</div>
+                <p>CHF depuis votre inscription</p>
+            </div>
+            <!-- Autres stats -->
+        </div>
+
+        <!-- Graphique des donations -->
+        <div class="donation-history">
+            <h3>Évolution de vos dons</h3>
+            <canvas id="donationChart"></canvas>
+        </div>
+
+        <!-- Historique filtrable -->
+        <div class="donation-history">
+            <div class="history-filters">
+                <button class="filter-button active">Tous</button>
+                <button class="filter-button">Mensuels</button>
+                <button class="filter-button">Ponctuels</button>
+            </div>
+            <!-- Table -->
+        </div>
+
+        <!-- Impact visuel -->
+        <div class="impact-visualization">
+            <!-- Progress bar -->
+        </div>
+
+        <!-- Certificat -->
+        <div class="donation-certificate">
+            <!-- Contenu du certificat -->
+        </div>
+    </main>
+
+    <script>
+        // Animation des stats
+        function animateNumbers() {
+            document.querySelectorAll('.stat-number').forEach(number => {
+                const target = parseInt(number.getAttribute('data-count'));
+                let count = 0;
+                const duration = 2000;
+                const increment = target / (duration / 16);
+
+                const timer = setInterval(() => {
+                    count += increment;
+                    if (count >= target) {
+                        number.textContent = target.toLocaleString('fr-CH');
+                        clearInterval(timer);
+                    } else {
+                        number.textContent = Math.floor(count).toLocaleString('fr-CH');
+                    }
+                }, 16);
+            });
+        }
+
+        // Graphique des donations
+        const ctx = document.getElementById('donationChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin'],
+                datasets: [{
+                    label: 'Donations (CHF)',
+                    data: [200, 300, 250, 400, 300, 350],
+                    borderColor: '#e74c3c',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+
+        // Animation de la barre de progression
+        setTimeout(() => {
+            document.querySelector('.progress-fill').style.width = '75%';
+        }, 500);
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            animateNumbers();
+        });
+    </script>
+</body>
+</html>

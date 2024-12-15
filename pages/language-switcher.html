@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DADSAC - Multilingue</title>
+    <!-- CSS commun -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .language-switcher {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 1000;
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.5rem;
+            border-radius: 25px;
+            box-shadow: var(--box-shadow);
+            backdrop-filter: blur(5px);
+        }
+
+        .language-button {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .language-button:hover {
+            background: rgba(231, 76, 60, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .language-button.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .language-flag {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .translation-loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            display: none;
+        }
+
+        .translation-loading.show {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .language-switcher {
+                top: auto;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switcher">
+        <button class="language-button active" data-lang="fr">
+            <img src="/images/flags/fr.png" alt="Français" class="language-flag">
+            FR
+        </button>
+        <button class="language-button" data-lang="en">
+            <img src="/images/flags/en.png" alt="English" class="language-flag">
+            EN
+        </button>
+        <button class="language-button" data-lang="sw">
+            <img src="/images/flags/sw.png" alt="Swahili" class="language-flag">
+            SW
+        </button>
+    </div>
+
+    <div class="translation-loading">
+        <i class="fas fa-spinner fa-spin"></i>
+        Changement de langue...
+    </div>
+
+    <script>
+        // Système de traduction
+        const translations = {
+            fr: {
+                welcome: "Bienvenue sur DADSAC",
+                mission: "Notre mission est d'offrir un accompagnement socio-éducatif...",
+                about: "À propos de nous",
+                contact: "Contactez-nous",
+                donate: "Faire un don",
+                // Ajoutez d'autres traductions
+            },
+            en: {
+                welcome: "Welcome to DADSAC",
+                mission: "Our mission is to provide socio-educational support...",
+                about: "About Us",
+                contact: "Contact Us",
+                donate: "Donate",
+                // Ajoutez d'autres traductions
+            },
+            sw: {
+                welcome: "Karibu DADSAC",
+                mission: "Dhumuni letu ni kutoa msaada wa kielimu na kijamii...",
+                about: "Kuhusu Sisi",
+                contact: "Wasiliana Nasi",
+                donate: "Changia",
+                // Ajoutez d'autres traductions
+            }
+        };
+
+        // Stockage de la langue préférée
+        function setLanguagePreference(lang) {
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        function getLanguagePreference() {
+            return localStorage.getItem('preferredLanguage') || 'fr';
+        }
+
+        // Changement de langue avec animation
+        async function changeLang(lang) {
+            // Afficher l'animation de chargement
+            document.querySelector('.translation-loading').classList.add('show');
+
+            // Simuler un délai pour l'effet visuel
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            // Mettre à jour les textes
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                element.textContent = translations[lang][key];
+            });
+
+            // Mettre à jour les boutons de langue
+            document.querySelectorAll('.language-button').forEach(button => {
+                button.classList.toggle('active', button.getAttribute('data-lang') === lang);
+            });
+
+            // Mettre à jour l'attribut lang de la page
+            document.documentElement.lang = lang;
+
+            // Sauvegarder la préférence
+            setLanguagePreference(lang);
+
+            // Cacher l'animation de chargement
+            setTimeout(() => {
+                document.querySelector('.translation-loading').classList.remove('show');
+            }, 300);
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            // Charger la langue préférée
+            const preferredLang = getLanguagePreference();
+            changeLang(preferredLang);
+
+            // Gestionnaires d'événements pour les boutons de langue
+            document.querySelectorAll('.language-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const lang = button.getAttribute('data-lang');
+                    changeLang(lang);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

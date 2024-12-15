@@ -1,0 +1,48 @@
+{
+  "date": "2024-12-15T10:12:59.883Z",
+  "resultats": {
+    "reussis": 9,
+    "echoues": 0,
+    "total": 9
+  },
+  "performances": {
+    "performance": {
+      "average": 21.333333333333332,
+      "min": 2,
+      "max": 130,
+      "total": 9,
+      "slow": 1
+    },
+    "memory": {
+      "initial": -0.5443496704101562,
+      "final": 0.03023529052734375,
+      "peak": 0.3095550537109375,
+      "average": 0.004469129774305556
+    }
+  },
+  "details": {
+    "durees": {
+      "Connexion BD": 6,
+      "Protection Injection SQL": 3,
+      "Creation utilisateur": 5,
+      "Email duplique": 3,
+      "Creation don valide": 2,
+      "Test charge (100 requetes)": 34,
+      "Stress test (1000 requetes)": 130,
+      "Calcul statistiques": 3,
+      "Suppression donnees": 6
+    },
+    "memoire": {
+      "Connexion BD": -0.5443496704101562,
+      "Protection Injection SQL": 0.3095550537109375,
+      "Creation utilisateur": 0.0196685791015625,
+      "Email duplique": 0.02263641357421875,
+      "Creation don valide": 0.02197265625,
+      "Test charge (100 requetes)": 0.25563812255859375,
+      "Stress test (1000 requetes)": -0.1298065185546875,
+      "Calcul statistiques": 0.0546722412109375,
+      "Suppression donnees": 0.03023529052734375
+    }
+  },
+  "erreurs": []
+}

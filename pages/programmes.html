@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Programmes - DADSAC</title>
+    <!-- CSS commun -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .hero-programs {
+            margin-top: 80px;
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                        url('../images/programs-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+            text-align: center;
+        }
+
+        .programs-nav {
+            background: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 80px;
+            z-index: 100;
+            box-shadow: var(--box-shadow);
+        }
+
+        .programs-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 0 1rem;
+        }
+
+        .program-nav-item {
+            padding: 0.5rem 1rem;
+            color: var(--dark-text);
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .program-nav-item:hover,
+        .program-nav-item.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .programs-grid {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .program-card {
+            margin-bottom: 6rem;
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .program-image-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .program-card:hover .program-image {
+            transform: scale(1.05);
+        }
+
+        .program-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .program-icon {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .program-stats {
+            display: flex;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .program-details {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-color);
+            width: fit-content;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 968px) {
+            .program-card {
+                grid-template-columns: 1fr;
+            }
+
+            .program-image-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero-programs">
+        <div>
+            <h1>Nos Programmes</h1>
+            <p>Découvrez nos activités pour la jeunesse de Dandora</p>
+        </div>
+    </header>
+
+    <nav class="programs-nav">
+        <div class="programs-nav-container">
+            <a href="#football" class="program-nav-item active">Football</a>
+            <a href="#boxe" class="program-nav-item">Boxe</a>
+            <a href="#danse" class="program-nav-item">Danse</a>
+            <a href="#bibliotheque" class="program-nav-item">Bibliothèque</a>
+            <a href="#art" class="program-nav-item">Art</a>
+        </div>
+    </nav>
+
+    <main class="programs-grid">
+        <!-- Football -->
+        <article class="program-card" data-aos="fade-up" id="football">
+            <div class="program-image-container">
+                <img src="../images/football.jpg" alt="Football à DADSAC" class="program-image">
+            </div>
+            <div class="program-content">
+                <i class="fas fa-futbol program-icon"></i>
+                <h2>Football</h2>
+                <div class="program-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">150+</div>
+                        <p>Participants</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <p>Tournois/an</p>
+                    </div>
+                </div>
+                <p>Depuis le début de notre organisation, nous avons choisi le football comme outil de médiation car il favorise la création d'une cohésion entre les enfants et les jeunes.</p>
+                <div class="program-details">
+                    <p>En 2021, grâce aux fonds provenant de généreuses donations, nous avons investi dans la construction d'un terrain de football dédié à cette activité.</p>
+                </div>
+                <a href="#football-details" class="cta-button">
+                    <span>En savoir plus</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </article>
+
+        <!-- Répéter pour les autres programmes avec leurs icônes et stats spécifiques -->
+    </main>
+
+    <!-- Le footer sera injecté ici automatiquement -->
+
+    <!-- JavaScript commun -->
+    <script src="/js/common.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Navigation active au scroll
+        const sections = document.querySelectorAll('.program-card');
+        const navItems = document.querySelectorAll('.program-nav-item');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').slice(1) === current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faire un don - DADSAC</title>
+    <!-- CSS commun -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .donation-hero {
+            margin-top: 80px;
+            height: 40vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('../images/impact.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+            text-align: center;
+        }
+
+        .page-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .donation-container {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .donation-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .donation-amount {
+            padding: 1.5rem;
+            border: 2px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .donation-amount:hover,
+        .donation-amount.selected {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .custom-amount {
+            margin-top: 1rem;
+        }
+
+        .custom-amount input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--light-bg);
+            border-radius: var(--border-radius);
+            font-size: 1.1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .custom-amount input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .impact-preview {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-top: 2rem;
+        }
+
+        .impact-preview ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+
+        .impact-preview li {
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .impact-preview i {
+            color: var(--primary-color);
+        }
+
+        .newsletter-section {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 100px;
+        }
+
+        .newsletter-form {
+            margin-top: 1.5rem;
+        }
+
+        .newsletter-input {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 2px solid var(--light-bg);
+            border-radius: var(--border-radius);
+        }
+
+        .benefits-list {
+            margin-top: 2rem;
+        }
+
+        .benefits-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .benefits-list li {
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .benefits-list i {
+            color: var(--primary-color);
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .payment-method {
+            padding: 1rem;
+            border: 1px solid var(--light-bg);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover {
+            border-color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .page-content {
+                grid-template-columns: 1fr;
+            }
+
+            .donation-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Le header sera injecté ici automatiquement -->
+
+    <main>
+        <section class="donation-hero">
+            <div>
+                <h1>Soutenez notre action</h1>
+                <p>Ensemble, créons un impact durable pour les jeunes de Dandora</p>
+            </div>
+        </section>
+
+        <div class="page-content">
+            <div class="donation-container">
+                <h2>Choisissez votre don</h2>
+                <p>Votre générosité permet de soutenir nos programmes éducatifs et sportifs</p>
+
+                <div class="donation-options">
+                    <div class="donation-amount">20 CHF</div>
+                    <div class="donation-amount selected">50 CHF</div>
+                    <div class="donation-amount">100 CHF</div>
+                </div>
+
+                <div class="custom-amount">
+                    <input type="number" placeholder="Autre montant en CHF" min="1">
+                </div>
+
+                <div class="impact-preview">
+                    <h3>Votre impact avec 50 CHF</h3>
+                    <ul>
+                        <li><i class="fas fa-futbol"></i> Participation aux activités sportives pendant 1 mois</li>
+                        <li><i class="fas fa-book"></i> Matériel scolaire complet</li>
+                        <li><i class="fas fa-graduation-cap"></i> Accès à la bibliothèque</li>
+                    </ul>
+                </div>
+
+                <div class="payment-methods">
+                    <div class="payment-method">
+                        <img src="/images/visa.png" alt="Visa">
+                    </div>
+                    <div class="payment-method">
+                        <img src="/images/mastercard.png" alt="Mastercard">
+                    </div>
+                    <div class="payment-method">
+                        <img src="/images/twint.png" alt="Twint">
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" style="width: 100%; margin-top: 2rem;">
+                    Faire un don sécurisé
+                </button>
+            </div>
+
+            <aside class="newsletter-section">
+                <h2>Restez informé</h2>
+                <p>Suivez l'impact de vos dons et recevez nos actualités</p>
+
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Votre email">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        S'abonner à la newsletter
+                    </button>
+                </form>
+
+                <div class="benefits-list">
+                    <h3>Vous recevrez :</h3>
+                    <ul>
+                        <li><i class="fas fa-newspaper"></i> Actualités mensuelles</li>
+                        <li><i class="fas fa-comment-dots"></i> Témoignages des jeunes</li>
+                        <li><i class="fas fa-calendar-alt"></i> Invitations aux événements</li>
+                        <li><i class="fas fa-chart-line"></i> Rapports d'impact</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Le footer sera injecté ici automatiquement -->
+
+    <!-- JavaScript commun -->
+    <script src="/js/common.js"></script>
+
+    <!-- JavaScript spécifique à la page -->
+    <script>
+        // Gestion des montants de don
+        document.querySelectorAll('.donation-amount').forEach(amount => {
+            amount.addEventListener('click', () => {
+                document.querySelectorAll('.donation-amount').forEach(a => 
+                    a.classList.remove('selected'));
+                amount.classList.add('selected');
+                updateImpactPreview(amount.textContent);
+            });
+        });
+
+        function updateImpactPreview(amount) {
+            // Mettre à jour l'aperçu de l'impact en fonction du montant
+        }
+    </script>
+</body>
+</html>

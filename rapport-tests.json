@@ -1,0 +1,26 @@
+{
+  "date": "2024-12-15T10:10:44.341Z",
+  "resultats": {
+    "reussis": 8,
+    "echoues": 0,
+    "total": 8
+  },
+  "performances": {
+    "average": 9.5,
+    "min": 4,
+    "max": 35,
+    "total": 8,
+    "slow": 0
+  },
+  "durees": {
+    "Connexion BD": 4,
+    "Protection Injection SQL": 4,
+    "Creation utilisateur": 7,
+    "Email duplique": 4,
+    "Creation don valide": 7,
+    "Test charge (100 requetes)": 35,
+    "Calcul statistiques": 4,
+    "Suppression donnees": 11
+  },
+  "erreurs": []
+}

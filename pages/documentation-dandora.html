@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Documentation Dandora - DADSAC</title>
+    <!-- CSS commun -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- CSS spécifique à la page -->
+    <style>
+        .doc-container {
+            margin-top: 80px;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .doc-hero {
+            position: relative;
+            height: 400px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .doc-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .doc-hero-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: var(--light-text);
+        }
+
+        .doc-sections {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 2rem;
+        }
+
+        .doc-nav {
+            position: sticky;
+            top: 100px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            height: fit-content;
+        }
+
+        .doc-nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .doc-nav li {
+            margin-bottom: 1rem;
+        }
+
+        .doc-nav a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .doc-nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .doc-content {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .doc-section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 100px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2em;
+            color: var(--primary-color);
+            margin: 0.5rem 0;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-image:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .doc-sections {
+                grid-template-columns: 1fr;
+            }
+
+            .doc-nav {
+                position: relative;
+                top: 0;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Le header sera injecté ici automatiquement -->
+
+    <main>
+        <div class="doc-container">
+            <div class="doc-hero">
+                <img src="../images/dandora-aerial.jpg" alt="Vue aérienne de Dandora">
+                <div class="doc-hero-content">
+                    <h1>Dandora : Comprendre le Contexte</h1>
+                    <p>Une documentation complète sur le quartier et ses enjeux</p>
+                </div>
+            </div>
+
+            <div class="doc-sections">
+                <nav class="doc-nav">
+                    <ul>
+                        <li>
+                            <a href="#histoire">
+                                <i class="fas fa-history"></i>
+                                Histoire
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#geographie">
+                                <i class="fas fa-map-marked-alt"></i>
+                                Géographie
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#population">
+                                <i class="fas fa-users"></i>
+                                Population
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#defis">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                Défis
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#opportunites">
+                                <i class="fas fa-lightbulb"></i>
+                                Opportunités
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="doc-content">
+                    <section id="histoire" class="doc-section">
+                        <h2>Histoire de Dandora</h2>
+                        <p>Dandora a été créé dans les années 1970 comme projet de logement social...</p>
+                        
+                        <div class="timeline">
+                            <!-- Timeline historique à ajouter -->
+                        </div>
+                    </section>
+
+                    <section id="population" class="doc-section">
+                        <h2>Population et Démographie</h2>
+                        <div class="stat-grid">
+                            <div class="stat-card">
+                                <i class="fas fa-users"></i>
+                                <h3>Population</h3>
+                                <div class="stat-number">150,000+</div>
+                                <p>habitants</p>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-child"></i>
+                                <h3>Jeunes</h3>
+                                <div class="stat-number">60%</div>
+                                <p>moins de 25 ans</p>
+                            </div>
+                            <!-- Autres statistiques -->
+                        </div>
+                    </section>
+
+                    <!-- Autres sections -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Le footer sera injecté ici automatiquement -->
+
+    <!-- JavaScript commun -->
+    <script src="/js/common.js"></script>
+
+    <!-- JavaScript spécifique à la documentation -->
+    <script>
+        // Smooth scroll pour les liens de navigation
+        document.querySelectorAll('.doc-nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

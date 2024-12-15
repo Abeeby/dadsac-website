@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ressources Éducatives - DADSAC</title>
+    <!-- CSS commun -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- CSS spécifique à la page -->
+    <style>
+        .resources-hero {
+            margin-top: 80px;
+            height: 40vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('../images/education.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+            text-align: center;
+        }
+
+        .resources-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .search-section {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid var(--light-bg);
+            border-radius: var(--border-radius);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .filter-button {
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            background: var(--light-bg);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-button i {
+            font-size: 0.9em;
+        }
+
+        .filter-button:hover,
+        .filter-button.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .resource-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .resource-content {
+            padding: 1.5rem;
+        }
+
+        .resource-type {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-bottom: 1rem;
+        }
+
+        .resource-stats {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .resource-stats span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .download-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .download-link:hover {
+            color: #c0392b;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .page-button {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--light-bg);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-button.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .search-bar {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Le header sera injecté ici automatiquement -->
+
+    <main>
+        <section class="resources-hero">
+            <div>
+                <h1>Ressources Éducatives</h1>
+                <p>Découvrez nos guides, documents et outils pédagogiques</p>
+            </div>
+        </section>
+
+        <div class="resources-container">
+            <section class="search-section">
+                <div class="search-bar">
+                    <input type="text" 
+                           class="search-input" 
+                           placeholder="Rechercher une ressource...">
+                    <button class="btn">
+                        <i class="fas fa-search"></i>
+                        Rechercher
+                    </button>
+                </div>
+
+                <div class="filter-buttons">
+                    <button class="filter-button active">
+                        <i class="fas fa-th-large"></i>
+                        Tout
+                    </button>
+                    <button class="filter-button">
+                        <i class="fas fa-book"></i>
+                        Guides
+                    </button>
+                    <button class="filter-button">
+                        <i class="fas fa-video"></i>
+                        Vidéos
+                    </button>
+                    <button class="filter-button">
+                        <i class="fas fa-file-alt"></i>
+                        Documents
+                    </button>
+                    <button class="filter-button">
+                        <i class="fas fa-chart-bar"></i>
+                        Rapports
+                    </button>
+                </div>
+            </section>
+
+            <div class="resources-grid">
+                <!-- Exemple de carte ressource -->
+                <article class="resource-card">
+                    <img src="../images/guide-benevole.jpg" 
+                         alt="Guide du bénévole" 
+                         class="resource-image">
+                    <div class="resource-content">
+                        <span class="resource-type">Guide</span>
+                        <h3>Guide du Bénévole</h3>
+                        <p>Tout ce qu'il faut savoir pour devenir bénévole à DADSAC</p>
+                        <div class="resource-stats">
+                            <span>
+                                <i class="fas fa-download"></i>
+                                1.2k
+                            </span>
+                            <span>
+                                <i class="fas fa-star"></i>
+                                4.8/5
+                            </span>
+                        </div>
+                        <a href="#" class="download-link">
+                            <i class="fas fa-file-pdf"></i>
+                            Télécharger le PDF
+                        </a>
+                    </div>
+                </article>
+                <!-- Ajoutez d'autres cartes ressources ici -->
+            </div>
+
+            <div class="pagination">
+                <button class="page-button">1</button>
+                <button class="page-button active">2</button>
+                <button class="page-button">3</button>
+                <button class="page-button">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Le footer sera injecté ici automatiquement -->
+
+    <!-- JavaScript commun -->
+    <script src="/js/common.js"></script>
+
+    <!-- JavaScript spécifique à la page -->
+    <script>
+        // Gestion des filtres
+        document.querySelectorAll('.filter-button').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.filter-button').forEach(btn => 
+                    btn.classList.remove('active'));
+                button.classList.add('active');
+                // Ajoutez ici la logique de filtrage
+            });
+        });
+    </script>
+</body>
+</html>

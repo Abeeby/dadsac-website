@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum - DADSAC</title>
+    <!-- CSS commun -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .forum-hero {
+            margin-top: 80px;
+            height: 30vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('../images/forum-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+            text-align: center;
+        }
+
+        .forum-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .forum-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .forum-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .forum-categories {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+        }
+
+        .topic-list {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .topic-item {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--light-bg);
+            display: grid;
+            grid-template-columns: auto 1fr auto auto;
+            gap: 1.5rem;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .topic-item:hover {
+            background-color: var(--light-bg);
+        }
+
+        .topic-status {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .status-new { background: #2ecc71; }
+        .status-hot { background: #e74c3c; }
+        .status-closed { background: #95a5a6; }
+
+        .topic-status::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid currentColor;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.2;
+        }
+
+        .topic-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .topic-title {
+            font-weight: bold;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .topic-meta {
+            font-size: 0.9em;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .topic-replies {
+            background: var(--light-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .topic-last-reply {
+            font-size: 0.9em;
+            color: #666;
+            text-align: right;
+        }
+
+        .new-topic-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .topic-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .topic-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .topic-tag {
+            padding: 0.3rem 0.8rem;
+            background: var(--light-bg);
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .topic-item {
+                grid-template-columns: auto 1fr;
+                grid-template-rows: auto auto;
+            }
+
+            .topic-replies,
+            .topic-last-reply {
+                grid-column: 2;
+                justify-self: start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Le header sera injecté ici automatiquement -->
+
+    <main>
+        <section class="forum-hero">
+            <div>
+                <h1>Forum de Discussion</h1>
+                <p>Échangez avec la communauté DADSAC</p>
+            </div>
+        </section>
+
+        <div class="forum-container">
+            <div class="forum-header">
+                <h2>Discussions récentes</h2>
+                <button class="btn btn-primary" onclick="openNewTopicModal()">
+                    <i class="fas fa-plus"></i>
+                    Nouveau sujet
+                </button>
+            </div>
+
+            <div class="forum-stats">
+                <div class="stat-card">
+                    <div class="stat-number">1,234</div>
+                    <p>Sujets</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5,678</div>
+                    <p>Messages</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">890</div>
+                    <p>Membres</p>
+                </div>
+            </div>
+
+            <div class="forum-categories">
+                <div class="category-card">
+                    <div class="category-info">
+                        <div class="category-icon">
+                            <i class="fas fa-newspaper fa-lg"></i>
+                        </div>
+                        <div>
+                            <h3>Actualités DADSAC</h3>
+                            <p>Discussions sur les dernières nouvelles</p>
+                        </div>
+                    </div>
+                    <span>15 sujets</span>
+                </div>
+                <!-- Autres catégories -->
+            </div>
+
+            <div class="topic-list">
+                <div class="topic-item">
+                    <div class="topic-status status-hot"></div>
+                    <div class="topic-info">
+                        <span class="topic-title">
+                            <i class="fas fa-fire" style="color: #e74c3c;"></i>
+                            Prochain tournoi de football
+                        </span>
+                        <span class="topic-meta">
+                            <i class="fas fa-user"></i>
+                            Par John • 12 mars 2024
+                        </span>
+                    </div>
+                    <span class="topic-replies">
+                        <i class="fas fa-comments"></i>
+                        23 réponses
+                    </span>
+                    <div class="topic-last-reply">
+                        <div>Dernier message</div>
+                        <div>Il y a 2h</div>
+                    </div>
+                </div>
+                <!-- Autres sujets -->
+            </div>
+        </div>
+
+        <!-- Modal Nouveau Sujet -->
+        <div class="new-topic-modal" id="newTopicModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Créer un nouveau sujet</h3>
+                    <button class="close-modal" onclick="closeNewTopicModal()">×</button>
+                </div>
+                <form class="topic-form">
+                    <div class="form-group">
+                        <label>Catégorie</label>
+                        <select required>
+                            <option>Actualités DADSAC</option>
+                            <option>Questions générales</option>
+                            <option>Événements</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Titre</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea rows="5" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Tags</label>
+                        <div class="topic-tags">
+                            <span class="topic-tag">Sport</span>
+                            <span class="topic-tag">Événement</span>
+                            <span class="topic-tag">+ Ajouter</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Publier</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Le footer sera injecté ici automatiquement -->
+
+    <!-- JavaScript commun -->
+    <script src="/js/common.js"></script>
+
+    <script>
+        function openNewTopicModal() {
+            document.getElementById('newTopicModal').style.display = 'flex';
+        }
+
+        function closeNewTopicModal() {
+            document.getElementById('newTopicModal').style.display = 'none';
+        }
+
+        // Fermer le modal en cliquant en dehors
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('newTopicModal')) {
+                closeNewTopicModal();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Prise de Rendez-vous - DADSAC</title>
+    <!-- CSS commun -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- CSS spécifique à la page -->
+    <style>
+        .booking-hero {
+            margin-top: 80px;
+            height: 40vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('../images/meeting.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+            text-align: center;
+        }
+
+        .booking-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .booking-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .booking-type {
+            padding: 1.5rem;
+            border: 2px solid var(--light-bg);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .booking-type i {
+            font-size: 2em;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .booking-type:hover,
+        .booking-type.selected {
+            border-color: var(--primary-color);
+            background: #fff5f5;
+            transform: translateY(-5px);
+        }
+
+        .calendar-section {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin: 2rem 0;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            margin: 2rem 0;
+        }
+
+        .calendar-day {
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid var(--light-bg);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-day.available:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 0.5rem;
+            margin: 2rem 0;
+        }
+
+        .time-slot {
+            padding: 0.8rem;
+            text-align: center;
+            border: 1px solid var(--light-bg);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .time-slot.available:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .booking-form {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--light-bg);
+            border-radius: var(--border-radius);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .submit-button {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            background-color: #c0392b;
+        }
+
+        .booking-summary {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+        }
+
+        .booking-summary h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Le header sera injecté ici automatiquement -->
+
+    <main>
+        <section class="booking-hero">
+            <div>
+                <h1>Prendre rendez-vous</h1>
+                <p>Planifiez une rencontre avec notre équipe</p>
+            </div>
+        </section>
+
+        <div class="booking-container">
+            <div class="booking-types">
+                <div class="booking-type">
+                    <i class="fas fa-building"></i>
+                    <h3>Visite sur site</h3>
+                    <p>Venez découvrir nos activités à Dandora</p>
+                </div>
+                <div class="booking-type">
+                    <i class="fas fa-video"></i>
+                    <h3>Consultation vidéo</h3>
+                    <p>Échangez avec notre équipe en ligne</p>
+                </div>
+            </div>
+
+            <div class="calendar-section">
+                <h3>Choisissez une date</h3>
+                <div class="calendar-grid" id="calendar">
+                    <!-- Généré par JavaScript -->
+                </div>
+
+                <h3>Créneaux disponibles</h3>
+                <div class="time-slots" id="timeSlots">
+                    <!-- Généré par JavaScript -->
+                </div>
+            </div>
+
+            <div class="booking-summary" id="bookingSummary" style="display: none;">
+                <h3>Récapitulatif</h3>
+                <div class="summary-item">
+                    <span>Type de rendez-vous:</span>
+                    <span id="summaryType"></span>
+                </div>
+                <div class="summary-item">
+                    <span>Date:</span>
+                    <span id="summaryDate"></span>
+                </div>
+                <div class="summary-item">
+                    <span>Heure:</span>
+                    <span id="summaryTime"></span>
+                </div>
+            </div>
+
+            <form class="booking-form" id="bookingForm">
+                <div class="form-group">
+                    <label>Nom complet</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Téléphone</label>
+                    <input type="tel" required>
+                </div>
+                <div class="form-group">
+                    <label>Message/Notes</label>
+                    <textarea rows="4"></textarea>
+                </div>
+                <button type="submit" class="submit-button">Confirmer le rendez-vous</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Le footer sera injecté ici automatiquement -->
+
+    <!-- JavaScript commun -->
+    <script src="/js/common.js"></script>
+
+    <!-- JavaScript spécifique à la page -->
+    <script>
+        // Code pour la gestion du calendrier et des créneaux
+        function generateCalendar() {
+            // Votre code de génération du calendrier
+        }
+
+        function generateTimeSlots() {
+            // Votre code de génération des créneaux
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            generateCalendar();
+            generateTimeSlots();
+        });
+    </script>
+</body>
+</html>

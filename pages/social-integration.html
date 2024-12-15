@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réseaux Sociaux - DADSAC</title>
+    <!-- CSS commun -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .social-container {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+
+        .social-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .social-button {
+            padding: 1rem;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+            font-size: 0.9em;
+            position: relative;
+            left: -100px;
+            width: 160px;
+        }
+
+        .social-button i {
+            width: 20px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        .social-button:hover {
+            left: 0;
+            box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .social-button.facebook { 
+            background: #3b5998;
+            transition-delay: 0.1s;
+        }
+        .social-button.twitter { 
+            background: #1da1f2;
+            transition-delay: 0.2s;
+        }
+        .social-button.instagram { 
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            transition-delay: 0.3s;
+        }
+        .social-button.linkedin { 
+            background: #0077b5;
+            transition-delay: 0.4s;
+        }
+        .social-button.youtube { 
+            background: #ff0000;
+            transition-delay: 0.5s;
+        }
+
+        .social-button span {
+            white-space: nowrap;
+        }
+
+        .social-button .follower-count {
+            margin-left: auto;
+            background: rgba(255,255,255,0.2);
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.8em;
+        }
+
+        .share-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            z-index: 1001;
+            display: none;
+        }
+
+        .share-modal.active {
+            display: block;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .share-button {
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .share-button:hover {
+            transform: translateY(-3px);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: none;
+        }
+
+        .modal-overlay.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .social-container {
+                bottom: 0;
+                left: 0;
+                right: 0;
+                top: auto;
+                transform: none;
+            }
+
+            .social-sidebar {
+                flex-direction: row;
+                justify-content: space-around;
+                background: white;
+                padding: 0.5rem;
+                box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            }
+
+            .social-button {
+                width: auto;
+                left: 0;
+                border-radius: 50%;
+                padding: 0.8rem;
+            }
+
+            .social-button span,
+            .social-button .follower-count {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barre sociale flottante -->
+    <div class="social-container">
+        <div class="social-sidebar">
+            <a href="#" class="social-button facebook">
+                <i class="fab fa-facebook-f"></i>
+                <span>Facebook</span>
+                <div class="follower-count">5.2K</div>
+            </a>
+            <a href="#" class="social-button twitter">
+                <i class="fab fa-twitter"></i>
+                <span>Twitter</span>
+                <div class="follower-count">3.1K</div>
+            </a>
+            <a href="#" class="social-button instagram">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+                <div class="follower-count">8.4K</div>
+            </a>
+            <a href="#" class="social-button linkedin">
+                <i class="fab fa-linkedin-in"></i>
+                <span>LinkedIn</span>
+                <div class="follower-count">2.7K</div>
+            </a>
+            <a href="#" class="social-button youtube">
+                <i class="fab fa-youtube"></i>
+                <span>YouTube</span>
+                <div class="follower-count">1.5K</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Modal de partage -->
+    <div class="share-modal">
+        <h3>Partager cette page</h3>
+        <div class="share-buttons">
+            <!-- Boutons de partage -->
+        </div>
+    </div>
+    <div class="modal-overlay"></div>
+
+    <script>
+        // Animation d'entrée des boutons sociaux
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.social-button').forEach(button => {
+                    button.style.left = '-100px';
+                });
+            }, 500);
+        });
+
+        // Fonction de partage
+        function shareContent(platform) {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            
+            const shareUrls = {
+                facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+                twitter: `https://twitter.com/intent/tweet?url=${url}&text=${title}`,
+                linkedin: `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`
+            };
+
+            window.open(shareUrls[platform], '_blank');
+        }
+    </script>
+</body>
+</html>

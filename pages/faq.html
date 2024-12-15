@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - DADSAC</title>
+    <!-- CSS commun -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .faq-hero {
+            margin-top: 80px;
+            height: 40vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('../images/faq-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+            text-align: center;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .faq-search {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid var(--light-bg);
+            border-radius: var(--border-radius);
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .faq-search:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+            outline: none;
+        }
+
+        .faq-categories {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .category-button {
+            padding: 0.8rem 1.5rem;
+            background: var(--light-bg);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .category-button i {
+            font-size: 0.9em;
+        }
+
+        .category-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .category-button.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid var(--light-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--box-shadow);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: var(--light-bg);
+        }
+
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        .live-chat {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .live-chat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .live-chat i {
+            font-size: 1.5em;
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--light-bg);
+            margin-top: 4rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 2rem auto 0;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .contact-card i {
+            font-size: 2em;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .faq-categories {
+                flex-direction: column;
+            }
+
+            .category-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Le header sera injecté ici automatiquement -->
+
+    <main>
+        <section class="faq-hero">
+            <div>
+                <h1>Questions Fréquentes</h1>
+                <p>Trouvez rapidement les réponses à vos questions</p>
+            </div>
+        </section>
+
+        <div class="faq-container">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="faq-search" placeholder="Rechercher une question...">
+            </div>
+            
+            <div class="faq-categories">
+                <button class="category-button active">
+                    <i class="fas fa-info-circle"></i>
+                    Général
+                </button>
+                <button class="category-button">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    Dons
+                </button>
+                <button class="category-button">
+                    <i class="fas fa-user-friends"></i>
+                    Parrainage
+                </button>
+                <button class="category-button">
+                    <i class="fas fa-running"></i>
+                    Activités
+                </button>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Comment puis-je faire un don ?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Vous pouvez faire un don de plusieurs manières :</p>
+                        <ul>
+                            <li>En ligne via notre plateforme sécurisée</li>
+                            <li>Par virement bancaire</li>
+                            <li>Par TWINT</li>
+                        </ul>
+                        <p>Tous les dons sont déductibles des impôts.</p>
+                    </div>
+                </div>
+                <!-- Ajoutez d'autres questions ici -->
+            </div>
+        </div>
+
+        <section class="contact-section">
+            <h2>Vous n'avez pas trouvé votre réponse ?</h2>
+            <p>Contactez-nous directement</p>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>contact@dadsac.org</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Téléphone</h3>
+                    <p>+41 XX XXX XX XX</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-comments"></i>
+                    <h3>Chat en direct</h3>
+                    <p>Disponible 9h-17h</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="live-chat" title="Chat en direct">
+            <i class="fas fa-comments"></i>
+        </div>
+    </main>
+
+    <!-- Le footer sera injecté ici automatiquement -->
+
+    <!-- JavaScript commun -->
+    <script src="/js/common.js"></script>
+
+    <script>
+        // Gestion des questions/réponses
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = question.classList.contains('active');
+                
+                // Ferme toutes les réponses
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('active');
+                });
+
+                // Ouvre/ferme la réponse cliquée
+                if (!isActive) {
+                    question.classList.add('active');
+                    answer.classList.add('active');
+                }
+            });
+        });
+
+        // Recherche en temps réel
+        document.querySelector('.faq-search').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                item.style.display = 
+                    question.includes(searchTerm) || answer.includes(searchTerm) 
+                    ? 'block' 
+                    : 'none';
+            });
+        });
+
+        // Gestion des catégories
+        document.querySelectorAll('.category-button').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.category-button').forEach(b => 
+                    b.classList.remove('active'));
+                button.classList.add('active');
+                // Ajoutez ici la logique de filtrage par catégorie
+            });
+        });
+    </script>
+</body>
+</html>

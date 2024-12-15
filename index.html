@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DADSAC - Accompagnement socio-éducatif à Dandora</title>
+    <!-- CSS commun -->
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- CSS spécifique à la page -->
+    <style>
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('/images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light-text);
+            padding: 2rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .impact-section {
+            padding: 6rem 2rem;
+            background: var(--light-bg);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .impact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .impact-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .impact-number {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin: 1rem 0;
+            font-weight: bold;
+        }
+
+        .programs-section {
+            padding: 6rem 2rem;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .program-card {
+            position: relative;
+            height: 300px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .program-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .program-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .program-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+        }
+
+        .testimonials-section {
+            padding: 6rem 2rem;
+            background: var(--light-bg);
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .testimonial-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Le header sera injecté ici automatiquement -->
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>DADSAC</h1>
+                <p>Ensemble, construisons un avenir meilleur pour les jeunes de Dandora</p>
+                <div class="hero-buttons">
+                    <a href="/pages/a-propos.html" class="btn">Découvrir notre mission</a>
+                    <a href="/pages/don.html" class="btn btn-outline">Faire un don</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="impact-section">
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <i class="fas fa-users fa-2x"></i>
+                    <div class="impact-number">500+</div>
+                    <h3>Jeunes accompagnés</h3>
+                </div>
+                <div class="impact-card">
+                    <i class="fas fa-calendar-check fa-2x"></i>
+                    <div class="impact-number">200</div>
+                    <h3>Activités organisées</h3>
+                </div>
+                <div class="impact-card">
+                    <i class="fas fa-hands-helping fa-2x"></i>
+                    <div class="impact-number">50</div>
+                    <h3>Bénévoles actifs</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="programs-section">
+            <h2 class="section-title">Nos Programmes</h2>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <img src="/images/football.jpg" alt="Programme football">
+                    <div class="program-content">
+                        <h3>Football</h3>
+                        <p>Un sport qui rassemble et éduque</p>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <img src="/images/education.jpg" alt="Programme éducatif">
+                    <div class="program-content">
+                        <h3>Éducation</h3>
+                        <p>Soutien scolaire et formation</p>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <img src="/images/arts.jpg" alt="Programme artistique">
+                    <div class="program-content">
+                        <h3>Arts & Culture</h3>
+                        <p>Expression et créativité</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials-section">
+            <h2 class="section-title">Témoignages</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <img src="/images/testimonial1.jpg" alt="John" class="testimonial-image">
+                    <h3>John K.</h3>
+                    <p>"DADSAC m'a donné l'opportunité de croire en mes rêves et de les poursuivre."</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Le footer sera injecté ici automatiquement -->
+
+    <!-- JavaScript commun -->
+    <script src="/js/common.js"></script>
+</body>
+</html>
